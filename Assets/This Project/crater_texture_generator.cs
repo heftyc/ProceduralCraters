@@ -16,6 +16,8 @@ public class crater_texture_generator : MonoBehaviour
         public int NumberCraters = 100;
         public string SaveLocation = "texture";
 
+        public int Noise_Tile = 2;
+
         private Texture2D noiseTex;
     
     // Start is called before the first frame update
@@ -26,14 +28,13 @@ public class crater_texture_generator : MonoBehaviour
         
         //"giant normal map"
         //"big normal noise"
-        noiseTex = (Texture2D)Resources.Load("big normal noise");
+        noiseTex = (Texture2D)Resources.Load("map 6");
 
         Texture2D SurfaceTexture = InitTexture();
 
         //SurfaceTexture = CreateSolidTexture(SurfaceTexture);
         for(int i = 0; i < NumberCraters; i++){
-           float margain = Max_Crater_Radius / 2.0f;
-           AddCrater(SurfaceTexture, Random.Range(Min_Crater_Radius, Max_Crater_Radius), Random.Range(margain, 1f - margain),  Random.Range(margain, 1f - margain));
+           AddCrater(SurfaceTexture, GenerateRadius(), Random.Range(0f,1f),  Random.Range(0f,1f));
            //AddCrater(SurfaceTexture, 0.45f,0.5f,0.5f);  
         }
         
@@ -84,10 +85,14 @@ public class crater_texture_generator : MonoBehaviour
         Color dullColor = new Color(0.5f,0.5f,0.0f);
         for (int y = 0; y < TextureDimension; y++){
             for (int x = 0; x < TextureDimension; x++){
-                SurfaceTexture.SetPixel(x, y, noiseTex.GetPixel((x * 3) % 2048, (y * 3) % 2048));
+                SurfaceTexture.SetPixel(x, y, noiseTex.GetPixel((x * Noise_Tile) % 2048, (y * Noise_Tile) % 2048));
             }
         }   
         return SurfaceTexture;
+    }
+
+    private float GenerateRadius(){
+        return Random.Range(Min_Crater_Radius, Max_Crater_Radius) ;//* Mathf.Pow(Random.Range(0f,1f),99f);
     }
 /*
      public void CreateGradientTexture()

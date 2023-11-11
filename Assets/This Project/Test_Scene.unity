@@ -256,6 +256,7 @@ MonoBehaviour:
   TextureDimension: 1000
   NumberCraters: 1
   SaveLocation: test1
+  Noise_Tile: 2
 --- !u!64 &693626866
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520332012}
   m_LocalRotation: {x: 0.5887271, y: -0, z: -0, w: 0.8083319}
-  m_LocalPosition: {x: 33.25, y: 10.95, z: -5.92}
+  m_LocalPosition: {x: -2.4, y: 10.95, z: -5.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
